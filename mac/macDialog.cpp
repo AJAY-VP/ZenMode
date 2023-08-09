@@ -1,28 +1,6 @@
 #include <bits/stdc++.h>
 #include "../common/choice.cpp"
 using namespace std;
-// Version 1
-// bool get_user_confirmation(const string& question) {
-//     string script = "display dialog \"" + question + "\" buttons {\"Yes\", \"No\"} default button \"Yes\" with title \"Zen Mode\"";
-
-//     // Use osascript to execute the AppleScript and capture the result
-//     string result = "";
-//     FILE* pipe = popen(("osascript -e '" + script + "'").c_str(), "r");
-//     if (!pipe) {
-//         cout << "Error executing AppleScript." << endl;
-//         return false;
-//     }
-
-//     char buffer[128];
-//     while (!feof(pipe)) {
-//         if (fgets(buffer, 128, pipe) != nullptr)
-//             result += buffer;
-//     }
-//     pclose(pipe);
-
-//     // Check if the user clicked "Yes" or "No"
-//     return (result.find("button returned:Yes") != string::npos);
-// }
 
 // Version 2
 UserChoice get_user_confirmation(const std::string& question) {
