@@ -16,5 +16,6 @@ int main()
             this_thread::sleep_for(chrono::milliseconds(20000));
         }
     }
+    delete osAction;
     return 0;
 }
