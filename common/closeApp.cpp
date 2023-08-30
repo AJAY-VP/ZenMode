@@ -3,7 +3,7 @@
 using namespace std;
 void close_app_running_in_background()
 {
-    std::string appName = "ZenMode";
+    string appName = "ZenMode";
     shouldStop = true;
-    std::cout << appName << " has been requested to quit." << std::endl;
+    cout << appName << " has been requested to quit." << endl;
 }

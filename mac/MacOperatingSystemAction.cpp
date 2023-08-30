@@ -16,20 +16,20 @@ public:
         {
         case CHOICE_YES:
         {
-            std::cout << "User chose 'Yes'." << std::endl;
+            cout << "User chose 'Yes'." << endl;
             system("pmset sleepnow");
-            std::cout << "pmset sleepnow executed successfully." << std::endl;
+            cout << "pmset sleepnow executed successfully." << endl;
             break;
         }
         case CHOICE_NO:
         {
-            std::cout << "User chose 'No'." << std::endl;
+            cout << "User chose 'No'." << endl;
             // Perform the action for 'No'
             break;
         }
-        case CHOICE_SHUTDOWN:
+        case CHOICE_CLOSE:
         {
-            std::cout << "User chose 'ShutDown'." << std::endl;
+            cout << "User chose 'ShutDown'." << endl;
             // Perform the action for 'Cancel'
             close_app_running_in_background();
             break;

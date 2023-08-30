@@ -3,5 +3,5 @@ using namespace std;
 enum UserChoice {
     CHOICE_YES,
     CHOICE_NO,
-    CHOICE_SHUTDOWN
+    CHOICE_CLOSE
 };
