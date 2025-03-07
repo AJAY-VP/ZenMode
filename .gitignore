@@ -31,7 +31,3 @@
 *.out
 *.app
 *.exec
-
-.DS_Store
-main
-./vscode

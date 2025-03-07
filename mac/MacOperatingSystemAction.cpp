@@ -27,30 +27,13 @@ public:
             // Perform the action for 'No'
             break;
         }
-        // case CHOICE_CLOSE:
-        // {
-        //     cout << "User chose 'ShutDown'." << endl;
-        //     // Perform the action for 'Cancel'
-        //     close_app_running_in_background();
-        //     break;
-        // }
+        case CHOICE_CLOSE:
+        {
+            cout << "User chose 'ShutDown'." << endl;
+            // Perform the action for 'Cancel'
+            close_app_running_in_background();
+            break;
         }
-    }
-
-    bool isScreenLocked() {
-        FILE* pipe = popen("ioreg -n Root -d1 | grep 'CGSSessionScreenIsLocked'", "r");
-        if (!pipe) return false;
-
-        char buffer[128];
-        string result = "";
-        while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
-            result += buffer;
         }
-        int status = pclose(pipe);
-
-        // cout << "Command output: " << result << endl; // Debugging line
-        // cout << "Status: " << status << endl;
-        bool res = result.find("Yes") != string::npos;
-        return res;
     }
 };
