@@ -23,6 +23,9 @@ int main()
             isLicenseFound = true;
         } else {
             cout << "No license found. Please enter a new license key and email." << endl;
+            pair<string, string> licenseInfo = osAction->licensePopup();
+            cout<<"License Key : "<<licenseInfo.first<<endl;
+            cout<<"Email : "<<licenseInfo.second<<endl;
             string newUuid = generate_uuid();
             time_t newExpiry = get_expiry_time();
             expiry = newExpiry;

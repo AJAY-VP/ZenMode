@@ -31,3 +31,37 @@ UserChoice get_user_confirmation(const string& question) {
         return CHOICE_CLOSE;
     }
 }
+
+pair<string, string> get_license_info() {
+    string script =
+        "set keyInput to text returned of (display dialog \"Enter your license key:\" "
+        "with title \"License Activation\" default answer \"\" with icon note)\n"
+        "set emailInput to text returned of (display dialog \"Enter your email address:\" "
+        "with title \"License Activation\" default answer \"\" with icon note)\n"
+        "return keyInput & \"\\n\" & emailInput";
+
+    string result = "";
+    FILE* pipe = popen(("osascript -e '" + script + "'").c_str(), "r");
+    if (!pipe) {
+        cerr << "Error executing AppleScript." << endl;
+        return make_pair("", "");
+    }
+
+    char buffer[256];
+    while (!feof(pipe)) {
+        if (fgets(buffer, sizeof(buffer), pipe) != nullptr)
+            result += buffer;
+    }
+    pclose(pipe);
+
+    size_t newlinePos = result.find('\n');
+    if (newlinePos == string::npos) {
+        cerr << "Invalid input format." << endl;
+        return make_pair("", "");
+    }
+
+    string key = result.substr(0, newlinePos);
+    string email = result.substr(newlinePos + 1);
+
+    return make_pair(key, email);
+}

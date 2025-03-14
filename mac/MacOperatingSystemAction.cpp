@@ -52,4 +52,8 @@ public:
         bool res = result.find("Yes") != string::npos;
         return res;
     }
+    pair<string,string> licensePopup() override{
+        pair<string, string> licenseInfo = get_license_info();
+        return licenseInfo;
+    }
 };
