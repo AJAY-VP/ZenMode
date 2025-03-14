@@ -1,6 +1,7 @@
 # Compiler and flags
 CXX := g++
-CXXFLAGS := -std=c++11
+CXXFLAGS := -std=c++11 -I/opt/homebrew/opt/libsodium/include
+LDFLAGS := -L/opt/homebrew/opt/libsodium/lib -lsodium
 
 # Application name
 APP_NAME := ZenMode
@@ -23,7 +24,7 @@ $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 
 # Link object files to create the application executable
 $(APP_NAME): $(OBJ) | $(APP_BUNDLE)
-	$(CXX) $(CXXFLAGS) $(OBJ) -o $(APP_DIR)/$(APP_NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(APP_DIR)/$(APP_NAME) $(LDFLAGS)
 
 # Create the application bundle directory
 $(APP_BUNDLE):

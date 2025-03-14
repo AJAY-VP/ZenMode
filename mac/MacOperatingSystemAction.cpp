@@ -7,7 +7,7 @@ using namespace std;
 class MacOperatingSystemAction : public OperatingSystemAction
 {
 public:
-    void execute()
+    void execute() override
     {
         cout << "Running on macOS" << endl;
         UserChoice choice = get_user_confirmation("Do you want to go to Zen mode?");
@@ -35,5 +35,21 @@ public:
             break;
         }
         }
+    }
+    bool isScreenLocked() override{
+        FILE* pipe = popen("ioreg -n Root -d1 | grep 'CGSSessionScreenIsLocked'", "r");
+        if (!pipe) return false;
+
+        char buffer[128];
+        string result = "";
+        while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
+            result += buffer;
+        }
+        int status = pclose(pipe);
+
+        // cout << "Command output: " << result << endl; // Debugging line
+        // cout << "Status: " << status << endl;
+        bool res = result.find("Yes") != string::npos;
+        return res;
     }
 };
